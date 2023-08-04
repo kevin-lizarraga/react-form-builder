@@ -101,6 +101,9 @@ export default class FormElementsEdit extends React.Component {
   }
 
   render() {
+
+    console.log(this.props.element);
+
     if (this.state.dirty) {
       this.props.element.dirty = true;
     }
@@ -429,6 +432,16 @@ export default class FormElementsEdit extends React.Component {
             preview={this.props.preview}
             element={this.props.element}
             key={this.props.element.options.length} />
+        }
+        { this.props.element.hasOwnProperty('custom_fields') &&
+          this.props.element.custom_fields.map((item) => (
+            <div key={item.prop_value} className="form-group">
+              <div className="form-group-range">
+                <label className="control-label" htmlFor="defaultSelected">{item.field_name}</label>
+                <input id="defaultSelected" type={item.input_type} className="form-control" defaultValue={item.default_value} onBlur={this.updateElement.bind(this)} onChange={this.editElementProp.bind(this, item.prop_name, 'value')} />
+              </div>
+            </div>
+          ))
         }
       </div>
     );
