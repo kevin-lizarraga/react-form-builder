@@ -111,6 +111,6 @@
     "serve:api": "node server/index.js",
     "pretranspile": "rimraf lib",
     "transpile": "babel --out-dir lib src --copy-files",
-    "prepare": "npm run build"
+    "prepare": "npm run clean && npm run build:lib && npm run build"
   }
 }
