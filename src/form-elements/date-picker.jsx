@@ -1,5 +1,6 @@
 import React from 'react';
-import { format, parse } from 'date-fns';
+import { format, parse, parseISO } from 'date-fns';
+import ReactDatePicker from 'react-datepicker';
 import ComponentHeader from './component-header';
 import ComponentLabel from './component-label';
 
@@ -19,7 +20,7 @@ class DatePicker extends React.Component {
     const { formatMask } = this.state;
     if (dt && dt.target) {
       placeholder = (dt && dt.target && dt.target.value === '') ? formatMask.toLowerCase() : '';
-      const formattedDate = (dt.target.value) ? format(dt.target.value, formatMask) : '';
+      const formattedDate = (dt.target.value) ? format(parseISO(dt.target.value), formatMask) : '';
       this.setState({
         value: formattedDate,
         internalValue: formattedDate,
@@ -125,7 +126,6 @@ class DatePicker extends React.Component {
                      ref={props.ref}
                      onChange={this.handleChange}
                      dateFormat="MM/DD/YYYY"
-                     placeholder={this.state.placeholder}
                      value={this.state.value}
                      className = "form-control" />
             }
