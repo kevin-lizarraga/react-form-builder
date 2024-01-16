@@ -1,6 +1,5 @@
 import React from 'react';
 import { format, parse, parseISO } from 'date-fns';
-import ReactDatePicker from 'react-datepicker';
 import ComponentHeader from './component-header';
 import ComponentLabel from './component-label';
 
